@@ -1,9 +1,6 @@
 package me.deotime.mcchatsender
 
-import com.google.gson.GsonBuilder
-import com.google.gson.JsonArray
-import com.google.gson.JsonObject
-import com.google.gson.JsonParser
+import com.google.gson.*
 import java.io.*
 
 object Config {
@@ -12,11 +9,7 @@ object Config {
     private val GSON = GsonBuilder().setPrettyPrinting().create()
 
     lateinit var configFile: File
-    private val registeredWebhooks = HashSet<MinecraftWebhook>()
-
-    init {
-        init()
-    }
+    val registeredWebhooks = HashSet<MinecraftWebhook>()
 
     fun addNewWebhook(webhook: MinecraftWebhook) {
         registeredWebhooks.add(webhook)
@@ -30,7 +23,7 @@ object Config {
         writer.close()
     }
 
-    private fun init() {
+    fun init() {
         val configFile = File(FILE_NAME)
         if(!configFile.exists()) configFile.createNewFile()
 
@@ -38,8 +31,9 @@ object Config {
 
         val parser = JsonParser()
         val inputStreamReader = InputStreamReader(FileInputStream(configFile))
-        val obj = parser.parse(inputStreamReader)?.let { it as JsonObject }?:return
-        val minecraftWebhooks = obj.getAsJsonArray("webhooks") as JsonArray
+        val read = parser.parse(inputStreamReader)
+        if(read is JsonNull) return
+        val minecraftWebhooks = read.asJsonArray
         for(webhook in minecraftWebhooks) registeredWebhooks.add(GSON.fromJson(webhook, MinecraftWebhook::class.java))
     }
 

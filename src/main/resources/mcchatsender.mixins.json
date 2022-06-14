@@ -5,5 +5,8 @@
   "refmap": "mixins.mcchatsender.refmap.json",
   "client": [
     "MixinMinecraft"
+  ],
+  "mixins": [
+    "MixinNetworkManager"
   ]
 }

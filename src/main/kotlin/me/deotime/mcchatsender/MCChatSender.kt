@@ -1,6 +1,9 @@
 package me.deotime.mcchatsender
 
+import me.deotime.mcchatsender.command.CommandMCChatSender
 import net.minecraft.client.Minecraft
+import net.minecraft.util.ChatComponentText
+import net.minecraftforge.client.ClientCommandHandler
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.common.event.FMLInitializationEvent
 import net.minecraftforge.fml.relauncher.Side
@@ -12,6 +15,8 @@ import org.apache.logging.log4j.LogManager
 class MCChatSender {
     @Mod.EventHandler
     fun onInit(event: FMLInitializationEvent) {
+        Config.init()
+        ClientCommandHandler.instance.registerCommand(CommandMCChatSender())
         LOGGER.info("MCChatSender initialized")
     }
 
@@ -27,5 +32,5 @@ class MCChatSender {
 fun String.clr() = this.replace("&", "\u00a7")
 
 fun sendPrefixMessage(msg: String) {
-    Minecraft.getMinecraft().thePlayer?.sendChatMessage("${MCChatSender.PREFIX} &r${msg.clr()}")
+    Minecraft.getMinecraft().thePlayer?.addChatMessage(ChatComponentText("${MCChatSender.PREFIX} \u00a7r${msg.clr()}"))
 }

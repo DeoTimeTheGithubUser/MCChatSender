@@ -1,6 +1,7 @@
 package me.deotime.mcchatsender.gui
 
 import me.deotime.mcchatsender.MinecraftWebhook
+import me.deotime.mcchatsender.sendPrefixMessage
 import java.awt.Component
 import java.awt.FlowLayout
 import javax.swing.*
@@ -12,7 +13,9 @@ class GuiCreateWebhook : JFrame("Create Webhook") {
     init {
         setSize(500, 800)
         initGui()
+        isAlwaysOnTop = true
         isVisible = true
+        requestFocus()
     }
 
     private fun initGui() {
@@ -45,7 +48,8 @@ class GuiCreateWebhook : JFrame("Create Webhook") {
             }
         }
 
-
+        container.add(createButton)
+        add(container)
     }
 
     private fun createOption(container: JPanel, optionName: String): () -> String {
