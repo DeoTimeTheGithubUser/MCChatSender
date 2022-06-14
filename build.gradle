@@ -6,19 +6,17 @@ plugins {
     id "org.jetbrains.kotlin.jvm" version "1.5.31"
 }
 
-version = "1.0-SNAPSHOT"
-group = "me.sad"
-archivesBaseName = "MCChatSender"
+version = "1.0.0"
+group = "me.deotime"
 
-sourceCompatibility = targetCompatibility = 1.8
-compileJava.options.encoding = 'UTF-8'
+compileJava.options.encoding = "UTF-8"
 
 minecraft {
     version = "1.8.9-11.15.1.2318-1.8.9"
-    runDir = "run"
     mappings = "stable_22"
+    runDir = "run"
     clientJvmArgs += "-Dmixin.hotSwap=true"
-    clientRunArgs += "--mixin mcchatsender.mixins.json"
+    clientRunArgs += "--mixin dmod.mixins.json"
     clientRunArgs += "--tweakClass gg.essential.loader.stage0.EssentialSetupTweaker"
     makeObfSourceJar = false
 }
@@ -32,6 +30,7 @@ repositories {
     maven { url "https://repo.spongepowered.org/maven/" }
 }
 
+
 configurations {
     include
     implementation.extendsFrom include
@@ -42,7 +41,7 @@ configurations {
 dependencies {
     include "gg.essential:loader-launchwrapper:1.1.3"
     provided "gg.essential:essential-1.8.9-forge:1759"
-    include 'org.spongepowered:mixin:0.7.11-SNAPSHOT'
+    provided "org.spongepowered:mixin:0.7.11-SNAPSHOT"
     packageLib("org.spongepowered:mixin:0.7.11-SNAPSHOT") {
         exclude module: 'guava'
         exclude module: 'commons-io'
@@ -52,7 +51,7 @@ dependencies {
 }
 
 mixin {
-    add sourceSets.main, "mixins.mcchatsender.refmap.json"
+    add sourceSets.main, "mixins.dmod.refmap.json"
 }
 
 jar {
@@ -60,7 +59,8 @@ jar {
             "ForceLoadAsMod": true,
             "TweakClass": "gg.essential.loader.stage0.EssentialSetupTweaker",
             "ModSide": "CLIENT",
-            "MixinConfigs": "mcchatsender.mixins.json"
+            "MixinConfigs": "dmod.mixins.json",
+            "FMLAT": "DMod_at.cfg",
     )
     from {
         configurations.packageLib.collect { it.isDirectory() ? it : zipTree(it) }
@@ -93,7 +93,6 @@ compileKotlin {
         jvmTarget = "1.8"
     }
 }
-
 compileTestKotlin {
     kotlinOptions {
         jvmTarget = "1.8"

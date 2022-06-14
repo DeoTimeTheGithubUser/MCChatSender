@@ -3,6 +3,7 @@ package me.deotime.mcchatsender.gui
 import me.deotime.mcchatsender.MinecraftWebhook
 import me.deotime.mcchatsender.sendPrefixMessage
 import java.awt.Component
+import java.awt.Dimension
 import java.awt.FlowLayout
 import javax.swing.*
 
@@ -25,6 +26,7 @@ class GuiCreateWebhook : JFrame("Create Webhook") {
         container.add(title)
 
         val optionsContainer = JPanel().yBox().centerAlign()
+        optionsContainer.maximumSize = Dimension(99999, 500)
 
         val urlOption = createOption(optionsContainer, "URL")
         val usernameOption = createOption(optionsContainer, "Username")
@@ -46,6 +48,7 @@ class GuiCreateWebhook : JFrame("Create Webhook") {
                 )
                 it(minecraftWebhook)
             }
+            this.dispose()
         }
 
         container.add(createButton)

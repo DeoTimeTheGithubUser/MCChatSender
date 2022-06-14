@@ -2,6 +2,7 @@ package me.deotime.mcchatsender.mixins;
 
 import io.netty.channel.ChannelHandlerContext;
 import me.deotime.mcchatsender.Config;
+import me.deotime.mcchatsender.MCChatSenderKt;
 import me.deotime.mcchatsender.MinecraftWebhook;
 import me.deotime.mcchatsender.MinecraftWebhookKt;
 import net.minecraft.network.NetworkManager;
@@ -23,6 +24,7 @@ public class MixinNetworkManager {
         String message = chatPacket.getChatComponent().getUnformattedText();
         MinecraftWebhook webhook = MinecraftWebhookKt.getListeningWebhook(message);
         if(webhook == null) return;
+        MCChatSenderKt.sendPrefixMessage("&aWebhook &e\"" + webhook.getUsername() + "\"&a triggered!");
         webhook.sendMessage();
     }
 

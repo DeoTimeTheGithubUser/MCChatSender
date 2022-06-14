@@ -6,11 +6,9 @@ import java.net.URL
 
 class MinecraftWebhook(val url: String, val username: String, val avatarUrl: String, val listenedMessage: String, val writtenMessage: String) {
     fun sendMessage() {
-        sendPrefixMessage("got ehre")
         Thread {
 
             val connection = URL(url)
-            sendPrefixMessage("connect url")
             val discordWebhook = DiscordWebhook.createWebhook(connection)
 
             val webhookMessage = WebhookMessage()
