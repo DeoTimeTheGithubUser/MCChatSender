@@ -1,8 +1,8 @@
 {
   "required": true,
   "compatibilityLevel": "JAVA_8",
-  "package": "me.sad.templatemod.mixins",
-  "refmap": "mixins.templatemod.refmap.json",
+  "package": "me.deotime.mcchatsender.mixins",
+  "refmap": "mixins.mcchatsender.refmap.json",
   "client": [
     "MixinMinecraft"
   ]

@@ -1,6 +1,6 @@
-package me.sad.templatemod.mixins;
+package me.deotime.mcchatsender.mixins;
 
-import me.sad.templatemod.TemplateMod;
+import me.deotime.mcchatsender.MCChatSender;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.main.GameConfiguration;
 import org.spongepowered.asm.mixin.Mixin;
@@ -12,6 +12,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MixinMinecraft {
     @Inject(at = @At("RETURN"), method = "<init>")
     private void init(GameConfiguration gameConfig, CallbackInfo ci) {
-        TemplateMod.getLogger().info("Minecraft initialized");
+        MCChatSender.getLogger().info("Minecraft initialized");
     }
 }

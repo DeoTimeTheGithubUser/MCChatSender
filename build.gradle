@@ -8,7 +8,7 @@ plugins {
 
 version = "1.0-SNAPSHOT"
 group = "me.sad"
-archivesBaseName = "TemplateMod"
+archivesBaseName = "MCChatSender"
 
 sourceCompatibility = targetCompatibility = 1.8
 compileJava.options.encoding = 'UTF-8'
@@ -18,7 +18,7 @@ minecraft {
     runDir = "run"
     mappings = "stable_22"
     clientJvmArgs += "-Dmixin.hotSwap=true"
-    clientRunArgs += "--mixin templatemod.mixins.json"
+    clientRunArgs += "--mixin mcchatsender.mixins.json"
     clientRunArgs += "--tweakClass gg.essential.loader.stage0.EssentialSetupTweaker"
     makeObfSourceJar = false
 }
@@ -40,6 +40,7 @@ configurations {
 }
 
 dependencies {
+    implementation 'org.projectlombok:lombok:1.18.20'
     include "gg.essential:loader-launchwrapper:1.1.3"
     provided "gg.essential:essential-1.8.9-forge:1759"
     include 'org.spongepowered:mixin:0.7.11-SNAPSHOT'
@@ -52,7 +53,7 @@ dependencies {
 }
 
 mixin {
-    add sourceSets.main, "mixins.templatemod.refmap.json"
+    add sourceSets.main, "mixins.mcchatsender.refmap.json"
 }
 
 jar {
@@ -60,7 +61,7 @@ jar {
             "ForceLoadAsMod": true,
             "TweakClass": "gg.essential.loader.stage0.EssentialSetupTweaker",
             "ModSide": "CLIENT",
-            "MixinConfigs": "templatemod.mixins.json"
+            "MixinConfigs": "mcchatsender.mixins.json"
     )
     from {
         configurations.packageLib.collect { it.isDirectory() ? it : zipTree(it) }

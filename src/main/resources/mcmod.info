@@ -1,7 +1,7 @@
 [
   {
-    "modid": "templatemod",
-    "name": "TemplateMod",
+    "modid": "mcchatsender",
+    "name": "MCChatSender",
     "description": "",
     "version": "${version}",
     "mcversion": "${mcversion}",
