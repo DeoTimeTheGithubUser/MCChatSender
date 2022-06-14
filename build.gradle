@@ -16,7 +16,7 @@ minecraft {
     mappings = "stable_22"
     runDir = "run"
     clientJvmArgs += "-Dmixin.hotSwap=true"
-    clientRunArgs += "--mixin dmod.mixins.json"
+    clientRunArgs += "--mixin mcchatsender.mixins.json"
     clientRunArgs += "--tweakClass gg.essential.loader.stage0.EssentialSetupTweaker"
     makeObfSourceJar = false
 }
@@ -51,7 +51,7 @@ dependencies {
 }
 
 mixin {
-    add sourceSets.main, "mixins.dmod.refmap.json"
+    add sourceSets.main, "mixins.mcchatsender.refmap.json"
 }
 
 jar {
@@ -59,8 +59,7 @@ jar {
             "ForceLoadAsMod": true,
             "TweakClass": "gg.essential.loader.stage0.EssentialSetupTweaker",
             "ModSide": "CLIENT",
-            "MixinConfigs": "dmod.mixins.json",
-            "FMLAT": "DMod_at.cfg",
+            "MixinConfigs": "mcchatsender.mixins.json",
     )
     from {
         configurations.packageLib.collect { it.isDirectory() ? it : zipTree(it) }

@@ -1,4 +1,4 @@
-package webhook;
+package me.deotime.webhook;
 
 public class WebhookMessage {
 

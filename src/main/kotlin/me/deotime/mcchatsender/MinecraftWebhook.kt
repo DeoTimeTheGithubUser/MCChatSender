@@ -1,7 +1,7 @@
 package me.deotime.mcchatsender
 
-import webhook.DiscordWebhook
-import webhook.WebhookMessage
+import me.deotime.webhook.DiscordWebhook
+import me.deotime.webhook.WebhookMessage
 import java.net.URL
 
 class MinecraftWebhook(val url: String, val username: String, val avatarUrl: String, val listenedMessage: String, val writtenMessage: String) {

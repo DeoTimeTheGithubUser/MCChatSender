@@ -18,7 +18,7 @@ class CommandMCChatSender : CommandBase() {
         val gui = GuiCreateWebhook()
         gui.createAction = {
             Config.addNewWebhook(it)
-            sendPrefixMessage("&aCreated new webhook.")
+            sendPrefixMessage("&aCreated new me.deotime.webhook.")
         }
     }
 }
